@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Contacto</title>
+    <style>
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+
+<h2>Escríbenos !!!</h2>
+<form id="contactForm">
+    <label>Nombre completo</label>
+    <input type="text" id="nombre" required>
+    <span class="error" id="nombreError"></span><br>
+
+    <label>Asunto</label>
+    <input type="text" id="asunto" required>
+    <span class="error" id="asuntoError"></span><br>
+
+    <label>Mensaje</label>
+    <textarea id="mensaje" required></textarea>
+    <span class="error" id="mensajeError"></span><br>
+
+    <button type="submit">Enviar mensaje</button>
+    <p class="success" id="successMessage"></p>
+</form>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let valid = true;
+    const name = document.getElementById("nombre").value;
+    const subject = document.getElementById("asunto").value;
+    const message = document.getElementById("mensaje").value;
+    const nameError = document.getElementById("nombreError");
+    const subjectError = document.getElementById("asuntoError");
+    const messageError = document.getElementById("mensajeError");
+    const successMessage = document.getElementById("successMessage");
+
+    const regex = /^[a-zA-Z\s]+$/; // Solo letras y espacios
+
+    // Validación del nombre
+    if (!regex.test(name)) {
+        nameError.textContent = "El nombre es requerido y debe contener solo letras.";
+        valid = false;
+    } else {
+        nameError.textContent = "";
+    }
+
+    // Validación del asunto
+    if (!regex.test(subject)) {
+        subjectError.textContent = "El asunto es requerido y debe contener solo letras.";
+        valid = false;
+    } else {
+        subjectError.textContent = "";
+    }
+
+    // Validación del mensaje
+    if (!regex.test(message)) {
+        messageError.textContent = "El mensaje es requerido y debe contener solo letras.";
+        valid = false;
+    } else {
+        messageError.textContent = "";
+    }
+
+    // Mostrar mensaje de éxito si es válido
+    if (valid) {
+        successMessage.textContent = "Mensaje enviado con éxito !!!";
+    } else {
+        successMessage.textContent = "";
+    }
+});
+</script>
+
+</body>
+</html>
