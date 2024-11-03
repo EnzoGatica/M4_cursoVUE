@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Centro Médico Ñuñoa</title>
+</head>
+<body>
+
+<script>
+    // Paso 1: Crear la estructura de datos
+    const radiologia = [
+        { hora: "08:30", especialista: "Dr. Juan Pérez", paciente: "Ana García", rut: "12345678-9", prevision: "Fonasa" },
+        { hora: "10:00", especialista: "Dra. María López", paciente: "Pedro González", rut: "98765432-1", prevision: "Isapre" }
+    ];
+
+    const traumatologia = [
+        { hora: "08:30", especialista: "Dr. Carlos Ríos", paciente: "María Vargas", rut: "11223344-5", prevision: "Fonasa" },
+        { hora: "11:00", especialista: "Dr. Juan Fernández", paciente: "Luis Figueroa", rut: "22334455-6", prevision: "Isapre" }
+    ];
+
+    const dental = [
+        { hora: "09:00", especialista: "Dr. Pedro Marín", paciente: "Ana Paredes", rut: "33445566-7", prevision: "Isapre" },
+        { hora: "12:00", especialista: "Dra. Rosa Sánchez", paciente: "Carmen Rojas", rut: "55667788-9", prevision: "Fonasa" }
+    ];
+
+    // Paso 2: Mostrar la primera y última atención de cada listado
+    function mostrarPrimeraYUltimaAtencion(especialidad, nombre) {
+        document.write(`<h3>${nombre}</h3>`);
+        document.write(`<p>Primera atención: ${especialidad[0].paciente} - ${especialidad[0].prevision}</p>`);
+        document.write(`<p>Última atención: ${especialidad[especialidad.length - 1].paciente} - ${especialidad[especialidad.length - 1].prevision}</p>`);
+    }
+
+    document.write('<h2>Estadísticas del Centro Médico Ñuñoa</h2>');
+    mostrarPrimeraYUltimaAtencion(radiologia, "Radiología");
+    mostrarPrimeraYUltimaAtencion(traumatologia, "Traumatología");
+    mostrarPrimeraYUltimaAtencion(dental, "Dental");
+
+    // Paso 3: Recorrer el arreglo y mostrar su contenido en una tabla
+    function mostrarTabla(especialidad, nombre) {
+        document.write(`<h3>${nombre}</h3>`);
+        document.write('<table border="1">');
+        document.write('<tr><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Previsión</th></tr>');
+        
+        especialidad.forEach((consulta) => {
+            document.write(`<tr>
+                <td>${consulta.hora}</td>
+                <td>${consulta.especialista}</td>
+                <td>${consulta.paciente}</td>
+                <td>${consulta.rut}</td>
+                <td>${consulta.prevision}</td>
+            </tr>`);
+        });
+        
+        document.write('</table>');
+    }
+
+    mostrarTabla(radiologia, "Radiología");
+    mostrarTabla(traumatologia, "Traumatología");
+    mostrarTabla(dental, "Dental");
+
+</script>
+
+</body>
+</html>
